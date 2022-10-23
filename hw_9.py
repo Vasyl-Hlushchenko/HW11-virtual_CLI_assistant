@@ -70,7 +70,7 @@ def add_birthday_handler(var): #delete???
     if name in CONTACTS:
         record = CONTACTS.data[name]
         record.add_birthday(birthday)
-        print(f"Contact's birthday was added")
+        print("Contact's birthday was added")
 
 
 @input_error
