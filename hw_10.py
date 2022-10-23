@@ -60,6 +60,8 @@ class Record:
                 print (f"to birthday {(((birthday).replace(year=(datetime.now()).year)) - datetime.now()).days} days")
             else:
                 print (f"to birthday {(((birthday).replace(year=(datetime.now()).year + 1)) - datetime.now()).days} days")
+        else:
+            print("Contact's birthday wasn't added")
 
 
 class Field:
