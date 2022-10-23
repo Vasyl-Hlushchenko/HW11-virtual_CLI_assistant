@@ -33,7 +33,7 @@ def add_contact_handler(var):
     else:
         record = Record(name, phone)
         CONTACTS.add_record(record)
-    print(f"New contact was added")
+    print("New contact was added")
 
 
 @input_error
