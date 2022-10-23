@@ -106,7 +106,7 @@ class Birthday(Field):
     @value.setter
     def value(self, value):
         try:
-            date_birthday = datetime.strptime(value, '%d.%m.%Y')
-            self.__value = date_birthday
+            birthday = datetime.strptime(value, '%d.%m.%Y')
+            self.__value = birthday
         except:
             raise ValueError(print("Your birthday should be like this: 20.12.2000"))
