@@ -16,9 +16,9 @@ class AddressBook(UserDict):
         while len(self.data) >= AddressBook.current_index:
             for name in names[AddressBook.current_index: min(len(self.data), AddressBook.current_index + AddressBook.N)]:
                 if self.data[name].birthday != "":
-                    show_list.append(f"{self.data[name].name.value}: phone{[phone.value for phone in self.data[name].phones]}, birthday {self.data[name].birthday}")
+                    show_list.append(f"{self.data[name].name.value}: phone {[phone.value for phone in self.data[name].phones]}, birthday {self.data[name].birthday}")
                 else:
-                    show_list.append(f"{self.data[name].name.value}: phone{[phone.value for phone in self.data[name].phones]}")
+                    show_list.append(f"{self.data[name].name.value}: phone {[phone.value for phone in self.data[name].phones]}")
             yield show_list
             AddressBook.current_index += AddressBook.N
             show_list = []
@@ -38,7 +38,7 @@ class Record:
             self.birthday = ""
 
     def add_birthday(self, birthday):
-        self.birthday += Birthday(birthday).value.strftime('%d.%m.%Y')
+        self.birthday = Birthday(birthday).value.strftime('%d.%m.%Y')
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
