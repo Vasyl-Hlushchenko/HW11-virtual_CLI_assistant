@@ -38,10 +38,7 @@ class Record:
             self.birthday = []
 
     def add_birthday(self, birthday):
-        if self.birthday == []:
-            self.birthday.append(Birthday(birthday))
-        else:
-            print("Contact's birthday was added before")
+        self.birthday.append(Birthday(birthday))
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))

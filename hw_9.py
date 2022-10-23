@@ -69,8 +69,11 @@ def add_birthday_handler(var): #delete???
     birthday = var.split()[3]
     if name in CONTACTS:
         record = CONTACTS.data[name]
-        record.add_birthday(birthday)
-        print("Contact's birthday was added")
+        if record.birthday == []:
+            record.add_birthday(birthday)
+            print("Contact's birthday was added")
+        else:
+            print("Contact's birthday was added before")
 
 
 @input_error
