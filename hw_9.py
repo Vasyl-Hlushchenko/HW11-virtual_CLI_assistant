@@ -64,12 +64,12 @@ def change_contact_handler(var):
 
 
 @input_error
-def add_birthday_handler(var): #delete???
+def add_birthday_handler(var):
     name = var.split()[2]
     birthday = var.split()[3]
     if name in CONTACTS:
         record = CONTACTS.data[name]
-        if record.birthday == []:
+        if record.birthday == "":
             record.add_birthday(birthday)
             print("Contact's birthday was added")
         else:
@@ -77,7 +77,7 @@ def add_birthday_handler(var): #delete???
 
 
 @input_error
-def days_to_birthday_handler(var): #delete???
+def days_to_birthday_handler(var):
     name = var.split()[0]
     if name in CONTACTS:
         record = CONTACTS.data[name]
@@ -86,17 +86,17 @@ def days_to_birthday_handler(var): #delete???
 
 def show_contacts_handler():
     for name, record in CONTACTS.items():
-        if [birthday.value for birthday in record.birthday] != []:
-            print(f"{name}: phone{[phone.value for phone in record.phones]}, birthday {([birthday.value for birthday in record.birthday][0]).strftime('%d.%m.%Y')}")
+        if record.birthday != "":
+            print(f"{name}: phone{[phone.value for phone in record.phones]}, birthday {record.birthday}")
         else:
             print(f"{name}: phone{[phone.value for phone in record.phones]}")
 
 
-def iteration(): #delete???
+def iteration():
     for i in CONTACTS.iterator():
-        print('************************************')
+        print('*************************************************************************')
         print(i)
-        print('************************************')
+        print('*************************************************************************')
 
 
 COMMANDS = {
@@ -105,16 +105,16 @@ COMMANDS = {
     "exit": quit_handler,
     "close": quit_handler,
     "good bye": quit_handler,
-    "iter": iteration #delete???
+    "iter": iteration
 }
 
 
 def main():
     while True:
         var = (input("Enter command: ")).lower()
-        if var.startswith('add birthday'): #delete???
+        if var.startswith('add birthday'):
             add_birthday_handler(var)
-        elif var.endswith("birthday"): #delete???
+        elif var.endswith("birthday"):
             days_to_birthday_handler(var)
         elif var.startswith('add'):
             add_contact_handler(var)

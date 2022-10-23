@@ -15,8 +15,8 @@ class AddressBook(UserDict):
         names = [name for name in self.data]
         while len(self.data) >= AddressBook.current_index:
             for name in names[AddressBook.current_index: min(len(self.data), AddressBook.current_index + AddressBook.N)]:
-                if [birthday.value for birthday in self.data[name].birthday] != []:
-                    show_list.append(f"{self.data[name].name.value}: phone{[phone.value for phone in self.data[name].phones]}, birthday {([birthday.value for birthday in self.data[name].birthday][0]).strftime('%d.%m.%Y')}")
+                if self.data[name].birthday != "":
+                    show_list.append(f"{self.data[name].name.value}: phone{[phone.value for phone in self.data[name].phones]}, birthday {self.data[name].birthday}")
                 else:
                     show_list.append(f"{self.data[name].name.value}: phone{[phone.value for phone in self.data[name].phones]}")
             yield show_list
@@ -33,12 +33,12 @@ class Record:
         else:
             self.phones = []
         if birthday:
-            self.birthday = [Birthday(birthday)]
+            self.birthday = Birthday(birthday)
         else:
-            self.birthday = []
+            self.birthday = ""
 
     def add_birthday(self, birthday):
-        self.birthday.append(Birthday(birthday))
+        self.birthday += Birthday(birthday).value.strftime('%d.%m.%Y')
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
@@ -55,7 +55,7 @@ class Record:
 
     def days_to_birthday(self):
         if self.birthday:
-            birthday =  [birthday.value for birthday in self.birthday][0]
+            birthday = datetime.strptime(self.birthday,'%d.%m.%Y')
             if ((birthday).replace(year=(datetime.now()).year)) > datetime.now():
                 print (f"to birthday {(((birthday).replace(year=(datetime.now()).year)) - datetime.now()).days} days")
             else:
